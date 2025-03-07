@@ -1,0 +1,21 @@
+def main():
+    keyword = input("Enter the keyword: ")
+    matrix = prepare_key_matrix(keyword)
+    print("\nPlayfair Cipher Matrix:")
+    for row in matrix:
+        print(" ".join(row))
+    
+    while True:
+        choice = input("\nChoose (E)ncrypt, (D)ecrypt or (Q)uit: ").upper()
+        if choice == 'Q':
+            break
+        text = input("Enter text: ")
+        if choice == 'E':
+            print("Encrypted Text:", playfair_cipher(text, matrix, 'encrypt'))
+        elif choice == 'D':
+            print("Decrypted Text:", playfair_cipher(text, matrix, 'decrypt'))
+        else:
+            print("Invalid choice, try again.")
+
+if __name__ == "__main__":
+    main()

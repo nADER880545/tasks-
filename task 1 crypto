@@ -1,0 +1,28 @@
+def decrypt_caesar_cipher(ciphertext, shift):
+    decrypted_message = ''
+    for char in ciphertext:
+        if char.isalpha():  
+            shift_base = 65 if char.isupper() else 97 
+            decrypted_message += chr((ord(char) - shift_base - shift) % 26 + shift_base)
+        else:
+            decrypted_message += char  
+    return decrypted_message
+
+
+def brute_force_caesar(ciphertext):
+    possible_decryptions = []
+    for shift in range(26):
+        decrypted_text = decrypt_caesar_cipher(ciphertext, shift)
+        possible_decryptions.append((shift, decrypted_text))
+    return possible_decryptions
+
+def main():
+    ciphertext = input("Enter the encrypted message: ")
+    decrypted_texts = brute_force_caesar(ciphertext)
+    
+    print(f"\nPossible decrypted texts (using all shifts):")
+    for shift, decrypted in decrypted_texts:
+        print(f"Shift {shift}: {decrypted}")
+
+if __name__ == "__main__":
+    main()

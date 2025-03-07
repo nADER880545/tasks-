@@ -1,0 +1,22 @@
+    for i in range(min(len(sorted_cipher_frequency), len(sorted_english_frequency))):
+        cipher_letter = sorted_cipher_frequency[i][0]
+        english_letter = sorted_english_frequency[i][0]
+        letter_mapping[cipher_letter] = english_letter
+    
+    decrypted_text = ''.join([letter_mapping.get(char, char) for char in ciphertext.lower()])
+    
+    return decrypted_text, letter_mapping
+
+def main():
+    ciphertext = input("Enter the encrypted message: ")
+    
+    decrypted_text, letter_mapping = frequency_analysis(ciphertext)
+    
+    print("\nSuggested Decryption:")
+    print(decrypted_text)
+    print("\nLetter Mapping (Ciphertext -> Plaintext):")
+    for cipher_letter, plain_letter in letter_mapping.items():
+        print(f"{cipher_letter.upper()} -> {plain_letter.upper()}")
+
+if __name__ == "__main__":
+    main()
